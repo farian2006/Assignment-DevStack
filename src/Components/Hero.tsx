@@ -13,7 +13,7 @@ const Hero = () => {
                 </p>
                 <div className="flex gap-4">
                     <button className="bg-linear-to-r from-orange-500 to-pink-500 text-white font-semibold px-4 py-2.5 rounded-2xl">Technologies</button>
-                   <button className="btn btn-soft rounded-2xl">Sign In</button>
+                   <button className="btn btn-soft rounded-2xl outline-white">Learn More</button>
                 </div>
             </div>
             <div>
