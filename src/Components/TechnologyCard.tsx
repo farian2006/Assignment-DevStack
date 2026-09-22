@@ -23,7 +23,7 @@ const TechnologyCard = ({technologyPromise,addToStack,stack}:technologyProps) =>
         return (
           <div
             key={technology.id}
-            className="w-64 rounded-lg border border-gray-200 bg-white p-7"
+            className="w-75 rounded-lg border border-gray-200 bg-white p-7 mt-3"
           >
             <div className="flex justify-between gap-10"> 
             <img

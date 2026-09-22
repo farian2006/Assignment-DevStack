@@ -1,5 +1,5 @@
 import type { Technology } from "../Types/TechnologyType";
-import { AiOutlineDelete } from "react-icons/ai";
+import { RxCross1 } from "react-icons/rx";
 
 
 interface YourStackProps {
@@ -16,14 +16,14 @@ const YourStack = ({stack,selectedCount,removeSelectedStack,removeAllStack}:Your
             <h2 className="text-4xl font-bold ">
                 Your Stack
             </h2>
-            <p className="mt-1 text-sm text-gray-400y">
+            <p className="mt-1 text-2xl text-gray-400y">
         {selectedCount} Technologies selected
       </p>
 
 <div>
 
       {stack.length === 0 ? (
-        <p className="text-sm text-gray-400">Your stack is empty</p>
+        <p className="text-2xl text-gray-400">Your stack is empty</p>
       ) : (
         <div className="mt-5">
           {stack.map((technology) => (
@@ -37,7 +37,7 @@ const YourStack = ({stack,selectedCount,removeSelectedStack,removeAllStack}:Your
               <p>{technology.category}</p>
               </div>
               <button onClick={() => removeSelectedStack(technology.id)}>
-                <AiOutlineDelete/>                
+                <RxCross1 />
               </button>
               </div>
             
@@ -49,7 +49,7 @@ const YourStack = ({stack,selectedCount,removeSelectedStack,removeAllStack}:Your
       )}
  </div>  
 
-    <button onClick={removeAllStack} className="btn btn-neutral w-full">  Remove All</button>
+    <button onClick={removeAllStack} className="btn btn-outline mt-4 w-full">  Remove All</button>
 </div>
       );
  };
