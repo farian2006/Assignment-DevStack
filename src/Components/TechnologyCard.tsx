@@ -3,6 +3,7 @@ import type { Technology } from "../Types/TechnologyType";
 
 interface technologyProps{
     technologyPromise: Promise<Technology[]>
+    
 }
 
 const TechnologyCard = ({technologyPromise}:technologyProps) => {

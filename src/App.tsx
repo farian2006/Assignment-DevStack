@@ -1,9 +1,10 @@
-import { Suspense } from "react"
+import { Suspense, useState } from "react"
 import Header from "./Components/Header"
 import Hero from "./Components/Hero"
 import Nav from "./Components/Nav"
 import TechnologyCard from "./Components/TechnologyCard"
 import type { Technology } from "./Types/TechnologyType"
+import YourStack from "./Components/YourStack"
 
 
 
@@ -14,6 +15,38 @@ const technologyFetch = async():Promise<Technology[]> =>{
 }
 
 function App() {
+
+
+  const [stack,setStack]=useState<Technology[]>([]);
+
+  const [selectedCount,setSelectedCount]=useState(0);
+
+
+  const addToStack = (technology:Technology) => {
+    const alreadySelected =stack.some((stack) => stack.id===technology.id)
+
+    if(alreadySelected){
+      return ;
+    }
+    setStack([...setStack,technology]);
+    selectedCount(setSelectedCount+1);
+  };
+
+  const removeSelectedStack =(id:string) => {
+    setStack(
+     stack.filter((technology)=>technology.id !==id)
+    );
+    setSelectedCount(selectedCount-1);
+  } 
+
+  const removeAllStack = () => {
+    setStack([]);
+
+    setSelectedCount(0);
+  }
+
+  
+ 
   
   const technologyPromise=technologyFetch();
 
@@ -29,6 +62,13 @@ function App() {
       <Suspense fallback={<h2>....Loading</h2>}>
       <TechnologyCard technologyPromise={technologyPromise}></TechnologyCard>
       </Suspense>
+
+     <YourStack
+  stack={stack}
+  selectedCount={selectedCount}
+  removeSelectedStack={removeSelectedStack}
+  removeAllStack={removeAllStack}
+/>
      
     </>
   )
