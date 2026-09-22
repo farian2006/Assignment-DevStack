@@ -6,6 +6,7 @@ import TechnologyCard from "./Components/TechnologyCard"
 import type { Technology } from "./Types/TechnologyType"
 import YourStack from "./Components/YourStack"
 import { toast } from "react-toastify"
+import Footer from "./Components/Footer"
 
 
 
@@ -83,6 +84,8 @@ function App() {
   removeAllStack={removeAllStack}
 />
 </div>
+
+  <Footer></Footer>
      
     </>
   )
