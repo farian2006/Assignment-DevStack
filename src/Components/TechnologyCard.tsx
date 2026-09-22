@@ -52,6 +52,7 @@ const TechnologyCard = ({technologyPromise,addToStack,stack}:technologyProps) =>
 
             <button
               onClick={() => addToStack(technology)}
+              
               disabled={isSelected}
               className={`mt-4 w-full rounded-md py-2 text-sm font-medium ${
                 isSelected

@@ -5,6 +5,7 @@ import Nav from "./Components/Nav"
 import TechnologyCard from "./Components/TechnologyCard"
 import type { Technology } from "./Types/TechnologyType"
 import YourStack from "./Components/YourStack"
+import { toast } from "react-toastify"
 
 
 
@@ -28,8 +29,10 @@ function App() {
     if(alreadySelected){
       return ;
     }
-    setStack([...setStack,technology]);
-    selectedCount(setSelectedCount+1);
+    setStack([...stack,technology]);
+    setSelectedCount(selectedCount+1);
+
+    toast(`${technology.name} added to your stack successfully`)
   };
 
   const removeSelectedStack =(id:string) => {
@@ -37,12 +40,16 @@ function App() {
      stack.filter((technology)=>technology.id !==id)
     );
     setSelectedCount(selectedCount-1);
+
+    toast(`${id} has been removed successfully`)
   } 
 
   const removeAllStack = () => {
     setStack([]);
 
     setSelectedCount(0);
+
+    toast.warn(`All Selected Items Has Been Removed`)
   }
 
   
@@ -59,7 +66,7 @@ function App() {
       <Hero></Hero>
 
       <Header></Header>
-     <div className="flex items-start gap-6">
+     <div className="flex items-start gap-6 container mx-auto">
      
       <Suspense fallback={<h2>....Loading</h2>}>
       <TechnologyCard 
