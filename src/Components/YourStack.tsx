@@ -12,18 +12,18 @@ interface YourStackProps {
 
 const YourStack = ({stack,selectedCount,removeSelectedStack,removeAllStack}:YourStackProps) => {
     return (
-        <div>
-            <h2 className="text-3xl font-bold ">
+        <div className="w-72 rounde-lg border border-gray-200 bg-white p-5">
+            <h2 className="text-4xl font-bold ">
                 Your Stack
             </h2>
-            <p>
+            <p className="mt-1 text-sm text-gray-400y">
         {selectedCount} Technologies selected
       </p>
 
       {stack.length === 0 ? (
-        <p>Your stack is empty</p>
+        <p className="text-sm text-gray-400">Your stack is empty</p>
       ) : (
-        <div>
+        <div className="mt-5">
           {stack.map((technology) => (
             <div key={technology.id}>
               <img

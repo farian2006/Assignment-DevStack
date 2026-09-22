@@ -1,45 +1,71 @@
 import { use } from "react";
 import type { Technology } from "../Types/TechnologyType";
+import { MdOutlineStar } from "react-icons/md";
 
 interface technologyProps{
     technologyPromise: Promise<Technology[]>
+    addToStack:(technology:Technology) => void,
+    stack:Technology[],
     
 }
 
-const TechnologyCard = ({technologyPromise}:technologyProps) => {
+const TechnologyCard = ({technologyPromise,addToStack,stack}:technologyProps) => {
 
     const technologies=use(technologyPromise);
    
     return (
-      <section className="grid grid-cols-3 gap-6 mt-2 container mx-auto mb-6">
-        {technologies.map((technology) => (
-            <div key={technology.id}>
+    <div className="grid grid-cols-3 gap-4 container mx-auto">
+      {technologies.map((technology) => {
+        const isSelected = stack.some(
+          (item) => item.id === technology.id
+        );
 
-            <div className="card w-96 bg-base-100 shadow-sm">
-  <div className="card-body">
-    <img src={technology.icon}className="w-12" ></img>
-    <div className="flex justify-between">
-      <h2 className="text-3xl font-bold">{technology.name}</h2>
-      <span className="text-xl rounded-3xl  ">{technology.badge}</span>
-    </div>
-   <p>
-    {technology.description}
-   </p>
+        return (
+          <div
+            key={technology.id}
+            className="w-64 rounded-lg border border-gray-200 bg-white p-7"
+          >
+            <div className="flex justify-between gap-10"> 
+            <img
+              src={technology.icon}
+              alt={technology.name}
+              className="h-10 w-10 object-contain"
+            />
 
-   <div className="flex justify-between items-center gap-10">
-    <p>{technology.category}</p>
-    <p>{technology.difficulty}</p>
-    <p>{technology.rating}</p>
-   </div>
-    <div className="mt-6">
-    <button className="btn btn-neutral btn-xl px-25 py-6 rounded-3xl">Add To Stack</button>
+            <p>{technology.badge}</p>
+            </div>
+
+            <h3 className="mt-3 text-lg font-bold">
+              {technology.name}
+            </h3>
+
+            <p className="mt-2 text-sm text-gray-500">
+              {technology.description}
+            </p>
+
+            <div className="flex justify-between items-center gap-3 ">
+            <p>{technology.category}</p>
+            <p>{technology.difficulty}</p>
+            <p>{technology.rating}
+              <MdOutlineStar /></p> 
+            </div> 
+
+            <button
+              onClick={() => addToStack(technology)}
+              disabled={isSelected}
+              className={`mt-4 w-full rounded-md py-2 text-sm font-medium ${
+                isSelected
+                  ? "cursor-not-allowed bg-gray-300 text-gray-500"
+                  : "bg-black text-white hover:bg-gray-800"
+              }`}
+            >
+              {isSelected ? "Added to Stack" : "Add to Stack"}
+            </button>
+          </div>
+        );
+      })}
     </div>
-  </div>
-</div>
-        </div>
-        ))}
-      </section>
-    );
+  );
 };
 
 export default TechnologyCard;

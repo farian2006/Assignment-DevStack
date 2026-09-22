@@ -59,8 +59,14 @@ function App() {
       <Hero></Hero>
 
       <Header></Header>
+     <div className="flex items-start gap-6">
+     
       <Suspense fallback={<h2>....Loading</h2>}>
-      <TechnologyCard technologyPromise={technologyPromise}></TechnologyCard>
+      <TechnologyCard 
+      technologyPromise={technologyPromise}
+      addToStack ={addToStack}
+      stack={stack}
+      ></TechnologyCard>
       </Suspense>
 
      <YourStack
@@ -69,6 +75,7 @@ function App() {
   removeSelectedStack={removeSelectedStack}
   removeAllStack={removeAllStack}
 />
+</div>
      
     </>
   )
