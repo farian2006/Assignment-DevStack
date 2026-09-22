@@ -5,7 +5,7 @@ import Nav from "./Components/Nav"
 import TechnologyCard from "./Components/TechnologyCard"
 import type { Technology } from "./Types/TechnologyType"
 import YourStack from "./Components/YourStack"
-import { toast } from "react-toastify"
+import { toast, ToastContainer } from "react-toastify"
 import Footer from "./Components/Footer"
 
 
@@ -33,7 +33,7 @@ function App() {
     setStack([...stack,technology]);
     setSelectedCount(selectedCount+1);
 
-    toast(`${technology.name} added to your stack successfully`)
+    toast.success(`${technology.name} added to your stack successfully`)
   };
 
   const removeSelectedStack =(id:string) => {
@@ -42,7 +42,7 @@ function App() {
     );
     setSelectedCount(selectedCount-1);
 
-    toast(`${id} has been removed successfully`)
+    toast.error(`${id} has been removed successfully`)
   } 
 
   const removeAllStack = () => {
@@ -50,7 +50,7 @@ function App() {
 
     setSelectedCount(0);
 
-    toast.warn(`All Selected Items Has Been Removed`)
+    toast.error(`All Selected Items Has Been Removed`)
   }
 
   
@@ -60,7 +60,7 @@ function App() {
 
   return (
     <>
-     
+       <ToastContainer position="top-center"/>
 
       <Nav></Nav>
 
